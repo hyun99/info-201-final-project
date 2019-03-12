@@ -73,10 +73,24 @@ body <- dashboardBody(
       
       tableOutput("ct2"),
     
-    fluidRow(
-      plotOutput("county1"),
-      plotOutput("county2")
-    )
+      fluidRow(
+        plotOutput("county1"),
+        plotOutput("county2")
+      )
+    ),
+    ### CREATING SECOND TAB ###
+    tabItem(tabName = "WildFires",
+            h2("Severity of WildFires in California Counties for Every 5 Years
+               Since 2005"),
+            fluidRow(
+              splitLayout(
+                cellWidths = c("40%", "40%", "40%"),
+                plotOutput("fire_map_2005"),
+                plotOutput("fire_map_2010"),
+                plotOutput("fire_map_2015")
+              )
+            ),
+            leafletOutput("fire_interactive_map")
     )
   )
 )
