@@ -68,7 +68,7 @@ server <- (function(input, output) {
       geom_polygon(color = "black", fill = NA) +
       theme_bw() +
       ditch_the_axes
-    # fire_map + scale_fill_gradient(trans = "log10")
+    fire_map + scale_fill_gradient(trans = "log10")
     
     fire_map <- fire_map + 
       scale_fill_gradient(low="red", high="darkred")
