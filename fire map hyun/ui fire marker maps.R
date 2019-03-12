@@ -3,7 +3,7 @@
 # run the application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
-# 
+#
 #    http://shiny.rstudio.com/
 #
 
@@ -23,34 +23,28 @@ library(shiny)
 library(leaflet)
 
 ui <- fluidPage(
-  leafletOutput("mymap")
+  leafletOutput("fire_interactive_map")
 )
 
-
-unique_markers_map
-
-
-server <- function(input, output, session) {
-  
-  output$mymap <- renderLeaflet({
+server <- function(input, output) {
+  output$fire_interactive_map <- renderLeaflet({
     pal <- colorFactor(c("navy", "red", "green"),
-                       domain = unique(cacopa$subregion))
-    
+      domain = unique(cacopa$subregion)
+    )
+
     leaflet(cacopa) %>%
       addTiles() %>%
       addCircleMarkers(
-        color = ~pal(subregion),
-        stroke = FALSE, fillOpacity = 0.5,         
+        color = ~ pal(subregion),
+        stroke = FALSE, fillOpacity = 0.5,
         lng = ~long, lat = ~lat,
-                 popup = ~subregion, Firerate)
-    
-    
+        label = ~ as.character(paste(
+          subregion,
+          ", Year of the Fire:", FIRE_YEAR,
+          " , Rate of Fire:", Firerate
+        ))
+      )
   })
 }
 
 shinyApp(ui, server)
-
-
-
-
-
