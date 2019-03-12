@@ -23,8 +23,8 @@ library("mapproj")
 # in ui
 # leafletOutput(outputId = "fire_map")
 
-# in server()
-# output$map
+# ui "method" plots 3 maps side by side 
+# then creates an interactive map
 
 ui <- shinyUI(fluidPage(
   titlePanel("Various Maps of California Wild Fires"),

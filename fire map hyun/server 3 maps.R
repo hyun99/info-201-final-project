@@ -18,46 +18,45 @@ library("usmap")
 library(maps)
 library("mapproj")
 
+# creates smaller data
 ca_fire <- read.csv(file = "ca_fire.csv", stringsAsFactors = FALSE)
 fire <- ca_fire %>%
   select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
 
-
+# groups data by county and year
 by_county <- fire %>%
   group_by(FIPS_NAME, FIRE_YEAR) %>%
-  count(sort = T) # %>%
-# ungroup()
+  count(sort = T) 
 
+# gets rid of nas
 by_county <- na.omit(by_county)
 
-
-# map("county", regions=by_county$FIPS_NAME)
-
+# picks out cali from us map
 states <- map_data("state")
 ca_df <- subset(states, region == "california")
 
-#head(ca_df)
-
+# picks our counties in cali
 counties <- map_data("county")
 ca_county <- subset(counties, region == "california")
 
-#head(ca_county)
-
+# creates the base for cali
 ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
   coord_fixed(1.3) +
   geom_polygon(color = "black", fill = "gray")
 ca_base + theme_nothing()
 
-
+# separates to counties
 ca_base + theme_nothing() +
   geom_polygon(data = ca_county, fill = NA, color = "white") +
   geom_polygon(color = "black", fill = NA)
 
+# makes the county name to lower case
 by_county$FIPS_NAME <- tolower(by_county$FIPS_NAME)
 
+# changes the FIPS_NAME to subregion
 names(by_county)[names(by_county) == "FIPS_NAME"] <- "subregion"
-#by_county
 
+# joins the county datas by subregion (each county)
 cacopa <- inner_join(ca_county, by_county, by = "subregion")
 names(cacopa)[names(cacopa) == "n"] <- "Firerate"
 
@@ -67,21 +66,11 @@ server <- (function(input, output) {
   output$fire_map_2005 <- renderPlot({
     options(scipen = 999)
 
-    ca_fire <- read.csv(file = "ca_fire.csv", stringsAsFactors = FALSE)
-    fire <- ca_fire %>%
-      select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
-
-
     by_county <- fire %>%
       group_by(FIPS_NAME, FIRE_YEAR) %>%
-      count(sort = T) # %>%
-    # ungroup()
-
-    by_county <- na.omit(by_county)
+      count(sort = T)
 
     by_county <- subset(by_county, FIRE_YEAR == "2005")
-
-    # map("county", regions=by_county$FIPS_NAME)
 
     states <- map_data("state")
     ca_df <- subset(states, region == "california")
@@ -138,30 +127,17 @@ server <- (function(input, output) {
   output$fire_map_2010 <- renderPlot({
     options(scipen = 999)
 
-    ca_fire <- read.csv(file = "ca_fire.csv", stringsAsFactors = FALSE)
-    fire <- ca_fire %>%
-      select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
-
-
     by_county <- fire %>%
       group_by(FIPS_NAME, FIRE_YEAR) %>%
-      count(sort = T) # %>%
-    # ungroup()
-
-    by_county <- na.omit(by_county)
-
+      count(sort = T) 
 
     by_county <- subset(by_county, FIRE_YEAR == "2010")
 
     states <- map_data("state")
     ca_df <- subset(states, region == "california")
 
-    head(ca_df)
-
     counties <- map_data("county")
     ca_county <- subset(counties, region == "california")
-
-    head(ca_county)
 
     ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
       coord_fixed(1.3) +
@@ -208,25 +184,14 @@ server <- (function(input, output) {
   output$fire_map_2015 <- renderPlot({
     options(scipen = 999)
 
-    ca_fire <- read.csv(file = "ca_fire.csv", stringsAsFactors = FALSE)
-    fire <- ca_fire %>%
-      select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
-
-
     by_county <- fire %>%
       group_by(FIPS_NAME, FIRE_YEAR) %>%
-      count(sort = T) # %>%
-    # ungroup()
-
-    by_county <- na.omit(by_county)
-
+      count(sort = T)
 
     by_county <- subset(by_county, FIRE_YEAR == "2015")
 
     states <- map_data("state")
     ca_df <- subset(states, region == "california")
-
-    head(ca_df)
 
     counties <- map_data("county")
     ca_county <- subset(counties, region == "california")
@@ -237,7 +202,6 @@ server <- (function(input, output) {
       coord_fixed(1.3) +
       geom_polygon(color = "black", fill = "gray")
     ca_base + theme_nothing()
-
 
     ca_base + theme_nothing() +
       geom_polygon(data = ca_county, fill = NA, color = "white") +

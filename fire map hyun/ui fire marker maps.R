@@ -19,9 +19,6 @@ library("usmap")
 library(maps)
 library("mapproj")
 
-library(shiny)
-library(leaflet)
-
 ui <- fluidPage(
   leafletOutput("fire_interactive_map")
 )
