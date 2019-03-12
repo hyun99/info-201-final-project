@@ -18,12 +18,12 @@ library("usmap")
 library(maps)
 library("mapproj")
 
-<<<<<<< HEAD
+
 # creates smaller data
 ca_fire <- read.csv(file = "ca_fire.csv", stringsAsFactors = FALSE)
-=======
+
 ca_fire <- read.csv(file = file.path("ca_fire.csv"), stringsAsFactors = FALSE)
->>>>>>> d410bafaa6b7dcf2347fc570c487859a807f03b3
+
 fire <- ca_fire %>%
   select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
 

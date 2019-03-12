@@ -30,7 +30,8 @@ county_names <- unique(asthma_data$County)
 ## CREATING THE DASHBOARD SIDEBAR
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    menuItem("Test", tabName = "Test", icon = icon("dashboard"))
+    menuItem("Asthma", tabName = "Asthma", icon = icon("dashboard")),
+    menuItem("Wildfire", tabName = "WildFires", icon = icon("widget"))
   )
 )
 
@@ -70,7 +71,6 @@ body <- dashboardBody(
       #   value = F
       # ),
       tableOutput("ct1"),
-      
       tableOutput("ct2"),
     
       fluidRow(
