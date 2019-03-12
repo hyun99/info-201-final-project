@@ -26,22 +26,19 @@ library("mapproj")
 # in server()
 # output$map 
 
-
-library(shiny)
-
 ui <- shinyUI(fluidPage(
-  titlePanel("title panel"),
-
-                mainPanel("main panel",
-                          fluidRow(
-                            splitLayout(cellWidths = c("33%", "33%", "33%"), 
-                                        plotOutput("fire_map_2012"), 
-                                        plotOutput("fire_map_2014"), 
-                                        plotOutput("fire_map_2016"))
-                          )
-                )
+  titlePanel("Various Maps of California Wild Fires"),
+  #mainPanel("The three maps show fire severity over time",
+  fluidRow(
+    splitLayout(cellWidths = c("40%", "40%", "40%"), 
+      plotOutput("fire_map_2005"), 
+      plotOutput("fire_map_2010"), 
+      plotOutput("fire_map_2015"))
+      )
+    #)
   )
 )
+
 
 
 
