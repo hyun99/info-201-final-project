@@ -33,7 +33,7 @@ ca_county <- subset(counties, region == "california")
 #head(ca_county)
 
 ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
-  coord_fixed(1.3) +
+  coord_fixed(1.3) +w
   geom_polygon(color = "black", fill = "gray")
 ca_base + theme_nothing()
 
