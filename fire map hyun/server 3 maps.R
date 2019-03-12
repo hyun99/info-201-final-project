@@ -36,12 +36,12 @@ by_county <- na.omit(by_county)
 states <- map_data("state")
 ca_df <- subset(states, region == "california")
 
-head(ca_df)
+#head(ca_df)
 
 counties <- map_data("county")
 ca_county <- subset(counties, region == "california")
 
-head(ca_county)
+#head(ca_county)
 
 ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
   coord_fixed(1.3) +
@@ -56,7 +56,7 @@ ca_base + theme_nothing() +
 by_county$FIPS_NAME <- tolower(by_county$FIPS_NAME)
 
 names(by_county)[names(by_county) == "FIPS_NAME"] <- "subregion"
-by_county
+#by_county
 
 cacopa <- inner_join(ca_county, by_county, by = "subregion")
 names(cacopa)[names(cacopa) == "n"] <- "Firerate"

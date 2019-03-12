@@ -28,7 +28,7 @@ library("mapproj")
 
 ui <- shinyUI(fluidPage(
   titlePanel("Various Maps of California Wild Fires"),
-  # mainPanel("The three maps show fire severity over time",
+  #mainPanel("The three maps show fire severity over time",
   fluidRow(
     splitLayout(
       cellWidths = c("40%", "40%", "40%"),
@@ -39,5 +39,6 @@ ui <- shinyUI(fluidPage(
   ),
 
   leafletOutput("fire_interactive_map")
-  # )
-))
+    #)
+  )
+)
