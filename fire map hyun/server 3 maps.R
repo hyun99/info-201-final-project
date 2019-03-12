@@ -18,7 +18,7 @@ library("usmap")
 library(maps)
 library("mapproj")
 
-ca_fire <- read.csv(file = "ca_fire.csv", stringsAsFactors = FALSE)
+ca_fire <- read.csv(file = file.path("ca_fire.csv"), stringsAsFactors = FALSE)
 fire <- ca_fire %>%
   select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
 
