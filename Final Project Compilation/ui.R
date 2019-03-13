@@ -39,16 +39,23 @@ choices_vec <- c("None" = "None",
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Asthma", tabName = "Asthma",
-             icon = icon("dashboard")),
+             icon = icon("chart-line")),
     menuItem("Wildfire", tabName = "WildFires",
-             icon = icon("widget")),
+             icon = icon("globe-americas")),
     menuItem("Wildfire and Asthma", tabName = "Asthma Patients and WildFires",
-             icon = icon("widget"))
+             icon = icon("chart-bar"))
   )
 )
 
 # CREATING EACH INDIVIDUAL TAB's BODY
 body <- dashboardBody(
+  tags$head(tags$style(HTML('
+      .main-header .logo {
+                            font-family: "Georgia", Times, "Times New Roman", serif;
+                            font-weight: bold;
+                            font-size: 24px;
+                            }
+                            '))),
   tabItems(
     tabItem(tabName = "Asthma",
             h2("Asthma Patients in California Counties from 2012 - 2016"),
@@ -199,8 +206,10 @@ body <- dashboardBody(
 )
 
 # CREATING MAIN UI
-shinyUI(dashboardPage(
-    dashboardHeader(title = "Asthma and California Wildfires"),
+shinyUI(dashboardPage(skin = "black",
+    dashboardHeader(title = "Asthma and California Wildfires",
+                    titleWidth = 450
+                    ),
     sidebar,
     body
   )
