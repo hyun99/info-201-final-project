@@ -52,9 +52,9 @@ body <- dashboardBody(
   tags$head(tags$style(HTML('
       .main-header .logo {
                             font-family: "Georgia", Times, "Times New Roman", serif;
-                            font-weight: bold;
+                            font-weight: semi-bold;
                             font-size: 24px;
-                            }
+      }
                             '))),
   tabItems(
     tabItem(tabName = "Asthma",
@@ -206,7 +206,7 @@ body <- dashboardBody(
 )
 
 # CREATING MAIN UI
-shinyUI(dashboardPage(skin = "black",
+shinyUI(dashboardPage(skin = "red",
     dashboardHeader(title = "Asthma and California Wildfires",
                     titleWidth = 450
                     ),
