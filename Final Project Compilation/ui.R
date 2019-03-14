@@ -61,13 +61,12 @@ body <- dashboardBody(
               asthma patients, most of which are children and because over the past couple of decades, 
               there have been many wildfires within the state of California.
               We hypothesized that there may be a rise in the number of asthma patients entering the hospitals due to asthma attacks.
-              It is a well-known fact that wildfires affect the airquality and risk of asthma episodes increases as the air quality decrease.
+              It is a well-known fact that wildfires affect the airquality and risk of asthma episodes increase as the air quality decreases.
               Thus, we wanted to see, from this data visualization shown below, how many
-              asthma patients were admitted from years 2012-2016 in respective Californian counties and
-              observe if there some years that were much higher than the other to
-              see if there are visible trends occuring. We wanted to see exactly
-              how many asthma patients were admitted in each respective county to see if a trend is correlated to wildfires.
-              The details of wildfire severity and comparison can be found on the next pages."),
+              asthma patients were admitted from years 2012-2016 in respective Californian counties. We wanted to determine 
+              if a trend existed throughout these counties or throughout parts of California (Socal, NorCal, Bay Area, etc).
+              We furthered the correlation examination in the next pages to see if the asthma trends that we visualize on this current page.
+              agree or disagree with the wildfire severity in California"),
             selectInput(
               "state1_choice",
               "Select 1st County to Observe",
@@ -101,14 +100,20 @@ body <- dashboardBody(
     ### CREATING SECOND TAB ###
     tabItem(tabName = "WildFires",
         h2("Severity of WildFires in California Counties"),
-        p("This page gives an insight to the Severity of Wildfires in Californian
-          counties for Every 5 Years starting from year 2005. An interactive map is also made by differentiating the colors by
-          the counties that the wildfires occured in and has informations of the year, amount of fires
-          that have occured in that specific location in that year. By looking at both the map of the california 
+        p("This page gives an insight to the severity of Wildfires in Californian
+          counties. We have created a visualization of the severity of wildfires in
+          Californian counties for Every 5 Years starting from year 2005.
+          In addition, an interactive map was also created, differentiating the colors by
+          the counties that the wildfires occured in and including informations of the year as well as the amount of fires
+          that have occured in that specific location in that year.
+          By looking at both the three maps of the severity of wildfires in Californian counties
           as well as the interactive map, we were able to examine the counties that had the most amount of fires
-          throughout the late 1990s to 2016. We believe by looking at such visualization, we will be able to
-          present a visual comparison between Asthma patients and Wildfires to see if there exists
-          a correlation that can be accounted for the Asthma hospitalizations."),
+          throughout the late 1990s to 2016. There are counties that consistently have large amount of wildfires, mostly in socal,
+          and if we observe the county, 'Riverside',
+          the large amount of wildfires that have occured in the year 2015, correlates to a sudden spike of
+          ER visits due to asthma in the year 2015 (determined by the Asthma page). To observe a more clear
+          visual comparison between Asthma patients and Wildfires, both datas have been compiled on the
+          'Wildfire and Asthma page'"),
         fluidRow(
           column(4,
             plotOutput("fire_map_2005")
@@ -127,14 +132,16 @@ body <- dashboardBody(
         h2("Comparison of the Sizes of the WildFires
            and Asthma Patients"),
         p("This page gives an insight to the compilation of the Asthma Patient analysis as well as the Wildfire
-          analysis, portrayed below is the visualization of Wildfires and the Asthma Patient Visits.
-          We wanted to show a visual representation of Asthma Patient visits, not only just by year,
+          analysis. We wanted to show a visual representation of Asthma Patient visits, not only just by year,
           but by county as well in order to see if there was correlation in wildfires in counties and
           asthma patient visit rates. In addition, we created a more detailed wildfire
-          visualization that encompasses not only the fire size and county, but fire class, cause of fire,
-          and fire duration as well to examine different aspects of the fire to see if the
-          fire was caused by natural events or humans. We believe that understanding of
-          such may help prevent possible wildfires that may be detrimental to the airquality."),
+          visualization that encompasses not only the fire size, county and the year of occurence,
+          but also the fire class, cause of fire, and fire duration as well to examine different
+          aspects of the fire to understand more about the wildfires that occur in California.
+          One of the reasons we proceeded with this complex visualization is that we wanted to observe
+          if we could understand why these fires were occuring. Will it be due to natural causes or humas errors?
+          We believe that understanding of such may help prevent possible wildfires that
+          may be detrimental to the airquality, which may affect asthma patients in California."),
         fluidRow(
           column(2,
                  # Y Variable

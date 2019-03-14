@@ -5,8 +5,8 @@ account: sahn1998
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 788881
-bundleId: 1938464
+bundleId: 1938678
 url: https://sahn1998.shinyapps.io/Asthma_and_California_Wildfires/
-when: 1552536024.08388
+when: 1552546641.41995
 asMultiple: FALSE
 asStatic: FALSE
