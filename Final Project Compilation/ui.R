@@ -15,19 +15,7 @@ library(rsconnect)
 library(plotly)
 
 ### FOR FIRST TAB ###
-asthma_data <- read.csv("asthma_by_county.csv", stringsAsFactors = F)
-asthma_data <- asthma_data %>%
-  select(Year, Age.Group, Number.of.Visits, County) %>%
-  arrange(Year, County) %>%
-  mutate(test <- replace_na(Number.of.Visits, 0)) %>%
-  group_by(Year, County) %>%
-  select(-Number.of.Visits) %>%
-  rename("num_visits" = `test <- replace_na(Number.of.Visits, 0)`) %>%
-  summarise(sum_visits = sum(num_visits)) %>%
-  filter(
-    Year == 2012 | Year == 2013 | Year == 2014 | Year == 2015 | Year == 2016
-  )
-
+asthma_data <- read.csv("summarized_asthma_data2.csv", stringsAsFactors = F)
 years <- unique(asthma_data$Year)
 county_names <- unique(asthma_data$County)
 
@@ -80,44 +68,36 @@ body <- dashboardBody(
               see if there are visible trends occuring. We wanted to see exactly
               how many asthma patients were admitted in each respective county to see if a trend is correlated to wildfires.
               The details of wildfire severity and comparison can be found on the next pages."),
-     selectInput(
-        "state1_choice",
-        "Select 1st County to Observe",
-        choices = county_names
-      ),
-      
-      checkboxInput(
-        "dt1r",
-        "See Table",
-        value = F
-      ),
-      
-      selectInput(
-        "state2_choice",
-        "Select 1st County to Observe",
-        choices = county_names
-      ),
-      
-      checkboxInput(
-        "dt2r",
-        "See Table",
-        value = F
-      ),
-      
-      #I'm hopefully going to eventually have a button to merge the two plots
-      # checkboxInput(
-      #   "merge",
-      #   strong("Join the Plots"),
-      #   value = F
-      # ),
-      tableOutput("ct1"),
-      tableOutput("ct2"),
-    
-      fluidRow(
-        plotOutput("county1"),
-        plotOutput("county2")
-      )
-    ),
+            selectInput(
+              "state1_choice",
+              "Select 1st County to Observe",
+              choices = county_names
+            ),
+            
+            checkboxInput(
+              "dt1r",
+              "See Table",
+              value = F
+            ),
+            
+            selectInput(
+              "state2_choice",
+              "Select 1st County to Observe",
+              choices = county_names
+            ),
+            
+            checkboxInput(
+              "dt2r",
+              "See Table",
+              value = F
+            ),
+            tableOutput("ct1"),
+            tableOutput("ct2"),
+    fluidPage(
+      plotlyOutput("county1", width = "85%", height = "400px"),
+      plotlyOutput("county2", width = "85%", height = "400px")
+    )
+  ),
     ### CREATING SECOND TAB ###
     tabItem(tabName = "WildFires",
         h2("Severity of WildFires in California Counties"),
@@ -127,8 +107,8 @@ body <- dashboardBody(
           that have occured in that specific location in that year. By looking at both the map of the california 
           as well as the interactive map, we were able to examine the counties that had the most amount of fires
           throughout the late 1990s to 2016. We believe by looking at such visualization, we will be able to
-          present a visual comparison between Asthma atients and Wildfires to see if there exists
-          a correlation that can be accounted for the Asthma hospitalizations"),
+          present a visual comparison between Asthma patients and Wildfires to see if there exists
+          a correlation that can be accounted for the Asthma hospitalizations."),
         fluidRow(
           column(4,
             plotOutput("fire_map_2005")
@@ -228,8 +208,9 @@ body <- dashboardBody(
           all interested in going into the field of technology. We decided
           to look at the historic Asthma Patient visits in relation to 
           historic Wildfires in California because we wanted to determine if these recent wildfires in California
-          may threaten children and adults who have asthma. Most of us know or have
-          family members that are affected by asthma.")
+          may threaten children and adults who have asthma. Most have or had asthma, and/or have
+          family members that are affected by asthma. Especially, one of our own team member, Anthony Cheng, was
+          a victim of an asthma attack due to a wildfire that occured when he lived in California as a child.")
     )
   )
 )

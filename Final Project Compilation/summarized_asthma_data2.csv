@@ -1,0 +1,281 @@
+"Year","County","sum_visits"
+2012,"Alameda",19637
+2012,"Amador",486
+2012,"Butte",1807
+2012,"Calaveras",201
+2012,"Colusa",107
+2012,"Contra Costa",15686
+2012,"Del Norte",248
+2012,"El Dorado",843
+2012,"Fresno",14062
+2012,"Glenn",180
+2012,"Humboldt",1679
+2012,"Imperial",2737
+2012,"Inyo",104
+2012,"Kern",10137
+2012,"Kings",2837
+2012,"Lake",769
+2012,"Lassen",150
+2012,"Los Angeles",97833
+2012,"Madera",2207
+2012,"Marin",1258
+2012,"Mariposa",84
+2012,"Mendocino",813
+2012,"Merced",4338
+2012,"Modoc",65
+2012,"Mono",34
+2012,"Monterey",3746
+2012,"Napa",1041
+2012,"Nevada",701
+2012,"Orange",19490
+2012,"Placer",2030
+2012,"Plumas",113
+2012,"Riverside",19368
+2012,"Sacramento",18535
+2012,"San Benito",455
+2012,"San Bernardino",25956
+2012,"San Diego",22973
+2012,"San Francisco",6314
+2012,"San Joaquin",8511
+2012,"San Luis Obispo",1496
+2012,"San Mateo",5388
+2012,"Santa Barbara",2894
+2012,"Santa Clara",11038
+2012,"Santa Cruz",1769
+2012,"Shasta",1671
+2012,"Siskiyou",198
+2012,"Solano",6540
+2012,"Sonoma",3655
+2012,"Stanislaus",5690
+2012,"Sutter",478
+2012,"Tehama",629
+2012,"Trinity",60
+2012,"Tulare",4364
+2012,"Tuolumne",433
+2012,"Ventura",5399
+2012,"Yolo",1497
+2012,"Yuba",500
+2013,"Alameda",19781
+2013,"Amador",447
+2013,"Butte",1826
+2013,"Calaveras",269
+2013,"Colusa",111
+2013,"Contra Costa",13748
+2013,"Del Norte",252
+2013,"El Dorado",858
+2013,"Fresno",14091
+2013,"Glenn",199
+2013,"Humboldt",1493
+2013,"Imperial",2419
+2013,"Inyo",108
+2013,"Kern",10066
+2013,"Kings",2674
+2013,"Lake",745
+2013,"Lassen",152
+2013,"Los Angeles",98659
+2013,"Madera",1590
+2013,"Marin",1215
+2013,"Mariposa",100
+2013,"Mendocino",796
+2013,"Merced",4255
+2013,"Modoc",61
+2013,"Mono",62
+2013,"Monterey",3935
+2013,"Napa",1040
+2013,"Nevada",585
+2013,"Orange",19284
+2013,"Placer",2159
+2013,"Plumas",114
+2013,"Riverside",18338
+2013,"Sacramento",18776
+2013,"San Benito",553
+2013,"San Bernardino",24850
+2013,"San Diego",22909
+2013,"San Francisco",5980
+2013,"San Joaquin",9259
+2013,"San Luis Obispo",1298
+2013,"San Mateo",5028
+2013,"Santa Barbara",2935
+2013,"Santa Clara",10810
+2013,"Santa Cruz",1876
+2013,"Shasta",1608
+2013,"Siskiyou",276
+2013,"Solano",6249
+2013,"Sonoma",3716
+2013,"Stanislaus",6092
+2013,"Sutter",516
+2013,"Tehama",574
+2013,"Trinity",41
+2013,"Tulare",4448
+2013,"Tuolumne",454
+2013,"Ventura",5360
+2013,"Yolo",1410
+2013,"Yuba",619
+2014,"Alameda",19703
+2014,"Amador",379
+2014,"Butte",1839
+2014,"Calaveras",289
+2014,"Colusa",140
+2014,"Contra Costa",13441
+2014,"Del Norte",218
+2014,"El Dorado",946
+2014,"Fresno",14935
+2014,"Glenn",200
+2014,"Humboldt",1406
+2014,"Imperial",2861
+2014,"Inyo",122
+2014,"Kern",10921
+2014,"Kings",2370
+2014,"Lake",834
+2014,"Lassen",157
+2014,"Los Angeles",100696
+2014,"Madera",1928
+2014,"Marin",1122
+2014,"Mariposa",85
+2014,"Mendocino",790
+2014,"Merced",4531
+2014,"Modoc",74
+2014,"Mono",76
+2014,"Monterey",3990
+2014,"Napa",1243
+2014,"Nevada",657
+2014,"Orange",19169
+2014,"Placer",1995
+2014,"Plumas",74
+2014,"Riverside",18864
+2014,"Sacramento",19557
+2014,"San Benito",570
+2014,"San Bernardino",24588
+2014,"San Diego",21997
+2014,"San Francisco",6037
+2014,"San Joaquin",9044
+2014,"San Luis Obispo",1484
+2014,"San Mateo",5135
+2014,"Santa Barbara",2958
+2014,"Santa Clara",10787
+2014,"Santa Cruz",1745
+2014,"Shasta",1982
+2014,"Siskiyou",276
+2014,"Solano",6590
+2014,"Sonoma",3556
+2014,"Stanislaus",6702
+2014,"Sutter",696
+2014,"Tehama",621
+2014,"Trinity",88
+2014,"Tulare",4459
+2014,"Tuolumne",385
+2014,"Ventura",5551
+2014,"Yolo",1540
+2014,"Yuba",572
+2015,"Alameda",19557
+2015,"Amador",308
+2015,"Butte",1996
+2015,"Calaveras",188
+2015,"Colusa",160
+2015,"Contra Costa",13501
+2015,"Del Norte",258
+2015,"El Dorado",835
+2015,"Fresno",15501
+2015,"Glenn",216
+2015,"Humboldt",1279
+2015,"Imperial",2632
+2015,"Inyo",124
+2015,"Kern",11363
+2015,"Kings",2379
+2015,"Lake",870
+2015,"Lassen",236
+2015,"Los Angeles",103334
+2015,"Madera",2034
+2015,"Marin",908
+2015,"Mariposa",113
+2015,"Mendocino",816
+2015,"Merced",4714
+2015,"Modoc",68
+2015,"Mono",76
+2015,"Monterey",4128
+2015,"Napa",1097
+2015,"Nevada",612
+2015,"Orange",20158
+2015,"Placer",2066
+2015,"Plumas",149
+2015,"Riverside",19796
+2015,"Sacramento",19812
+2015,"San Benito",546
+2015,"San Bernardino",24777
+2015,"San Diego",22691
+2015,"San Francisco",5974
+2015,"San Joaquin",9439
+2015,"San Luis Obispo",1673
+2015,"San Mateo",5201
+2015,"Santa Barbara",3323
+2015,"Santa Clara",12450
+2015,"Santa Cruz",1715
+2015,"Shasta",1839
+2015,"Siskiyou",239
+2015,"Solano",6098
+2015,"Sonoma",3575
+2015,"Stanislaus",6396
+2015,"Sutter",623
+2015,"Tehama",601
+2015,"Trinity",45
+2015,"Tulare",4766
+2015,"Tuolumne",397
+2015,"Ventura",5705
+2015,"Yolo",1614
+2015,"Yuba",626
+2016,"Alameda",18038
+2016,"Amador",299
+2016,"Butte",1473
+2016,"Calaveras",186
+2016,"Colusa",80
+2016,"Contra Costa",11921
+2016,"Del Norte",320
+2016,"El Dorado",880
+2016,"Fresno",13521
+2016,"Glenn",179
+2016,"Humboldt",1277
+2016,"Imperial",2416
+2016,"Inyo",122
+2016,"Kern",9663
+2016,"Kings",1989
+2016,"Lake",907
+2016,"Lassen",193
+2016,"Los Angeles",100416
+2016,"Madera",1855
+2016,"Marin",913
+2016,"Mariposa",96
+2016,"Mendocino",744
+2016,"Merced",4300
+2016,"Modoc",90
+2016,"Mono",58
+2016,"Monterey",3747
+2016,"Napa",813
+2016,"Nevada",470
+2016,"Orange",17313
+2016,"Placer",1804
+2016,"Plumas",120
+2016,"Riverside",18769
+2016,"Sacramento",17591
+2016,"San Benito",508
+2016,"San Bernardino",21849
+2016,"San Diego",19528
+2016,"San Francisco",5807
+2016,"San Joaquin",8341
+2016,"San Luis Obispo",1640
+2016,"San Mateo",4640
+2016,"Santa Barbara",3096
+2016,"Santa Clara",10484
+2016,"Santa Cruz",1623
+2016,"Shasta",1274
+2016,"Siskiyou",149
+2016,"Solano",6644
+2016,"Sonoma",3105
+2016,"Stanislaus",5378
+2016,"Sutter",588
+2016,"Tehama",610
+2016,"Trinity",19
+2016,"Tulare",3716
+2016,"Tuolumne",371
+2016,"Ventura",5068
+2016,"Yolo",1466
+2016,"Yuba",521
