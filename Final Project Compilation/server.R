@@ -30,6 +30,64 @@ county_names <- unique(asthma_data$County)
 # creates smaller data
 ca_fire <- read.csv("ca_fire.csv", stringsAsFactors = FALSE)
 
+get_fire_map <- function(year_var) {
+  options(scipen = 999)
+  
+  fire <- ca_fire %>%
+    select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
+  by_county <- fire %>%
+    group_by(FIPS_NAME, FIRE_YEAR) %>%
+    count(sort = T)
+  
+  by_county <- subset(by_county, FIRE_YEAR == year_var)
+  
+  states <- map_data("state")
+  ca_df <- subset(states, region == "california")
+  
+  counties <- map_data("county")
+  ca_county <- subset(counties, region == "california")
+  
+  ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
+    coord_fixed(1.3) +
+    geom_polygon(color = "black", fill = "gray")
+  ca_base + theme_nothing()
+  
+  
+  ca_base + theme_nothing() +
+    geom_polygon(data = ca_county, fill = NA, color = "white") +
+    geom_polygon(color = "black", fill = NA)
+  
+  by_county$FIPS_NAME <- tolower(by_county$FIPS_NAME)
+  
+  names(by_county)[names(by_county) == "FIPS_NAME"] <- "subregion"
+  by_county
+  
+  cacopa <- inner_join(ca_county, by_county, by = "subregion")
+  names(cacopa)[names(cacopa) == "n"] <- "Firerate"
+  
+  ditch_the_axes <- theme(
+    axis.text = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    axis.title = element_blank()
+  )
+  
+  fire_map <- ca_base +
+    geom_polygon(data = cacopa, aes(fill = Firerate), color = "white") +
+    geom_polygon(color = "black", fill = NA) +
+    theme_bw() +
+    ditch_the_axes +
+    labs(title = paste0(year_var, " California Wildfires"))
+  fire_map + scale_fill_gradient(trans = "log10")
+  
+  fire_map <- fire_map +
+    scale_fill_gradient(low = "red", high = "darkred")
+  
+  return(fire_map) 
+}
+
 fire <- ca_fire %>%
   select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
 
@@ -124,176 +182,15 @@ shinyServer(function(input, output) {
   
   ### CREATING THE FIRE MAP OF 2005 ###
   output$fire_map_2005 <- renderPlot({
-    options(scipen = 999)
-    
-    fire <- ca_fire %>%
-      select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
-    by_county <- fire %>%
-      group_by(FIPS_NAME, FIRE_YEAR) %>%
-      count(sort = T)
-    
-    by_county <- subset(by_county, FIRE_YEAR == "2005")
-    
-    states <- map_data("state")
-    ca_df <- subset(states, region == "california")
-    
-    counties <- map_data("county")
-    ca_county <- subset(counties, region == "california")
-    
-    ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
-      coord_fixed(1.3) +
-      geom_polygon(color = "black", fill = "gray")
-    ca_base + theme_nothing()
-    
-    
-    ca_base + theme_nothing() +
-      geom_polygon(data = ca_county, fill = NA, color = "white") +
-      geom_polygon(color = "black", fill = NA)
-    
-    by_county$FIPS_NAME <- tolower(by_county$FIPS_NAME)
-    
-    names(by_county)[names(by_county) == "FIPS_NAME"] <- "subregion"
-    by_county
-    
-    cacopa <- inner_join(ca_county, by_county, by = "subregion")
-    names(cacopa)[names(cacopa) == "n"] <- "Firerate"
-    
-    ditch_the_axes <- theme(
-      axis.text = element_blank(),
-      axis.line = element_blank(),
-      axis.ticks = element_blank(),
-      panel.border = element_blank(),
-      panel.grid = element_blank(),
-      axis.title = element_blank()
-    )
-    
-    fire_map_2005 <- ca_base +
-      geom_polygon(data = cacopa, aes(fill = Firerate), color = "white") +
-      geom_polygon(color = "black", fill = NA) +
-      theme_bw() +
-      ditch_the_axes +
-      labs(title = "2005 California Wildfires")
-    fire_map_2005 + scale_fill_gradient(trans = "log10")
-    
-    fire_map_2005 <- fire_map_2005 +
-      scale_fill_gradient(low = "red", high = "darkred")
-    
+    fire_map_2005 <- get_fire_map("2005") 
     print(fire_map_2005)
   })
-  
-  ### CREATING THE FIRE MAP OF 2010 ###
   output$fire_map_2010 <- renderPlot({
-    options(scipen = 999)
-    
-    fire <- ca_fire %>%
-      select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
-    by_county <- fire %>%
-      group_by(FIPS_NAME, FIRE_YEAR) %>%
-      count(sort = T) 
-    
-    by_county <- subset(by_county, FIRE_YEAR == "2010")
-    
-    states <- map_data("state")
-    ca_df <- subset(states, region == "california")
-    
-    counties <- map_data("county")
-    ca_county <- subset(counties, region == "california")
-    
-    ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
-      coord_fixed(1.3) +
-      geom_polygon(color = "black", fill = "gray")
-    ca_base + theme_nothing()
-    
-    ca_base + theme_nothing() +
-      geom_polygon(data = ca_county, fill = NA, color = "white") +
-      geom_polygon(color = "black", fill = NA)
-    
-    by_county$FIPS_NAME <- tolower(by_county$FIPS_NAME)
-    
-    names(by_county)[names(by_county) == "FIPS_NAME"] <- "subregion"
-    by_county
-    
-    cacopa <- inner_join(ca_county, by_county, by = "subregion")
-    names(cacopa)[names(cacopa) == "n"] <- "Firerate"
-    
-    ditch_the_axes <- theme(
-      axis.text = element_blank(),
-      axis.line = element_blank(),
-      axis.ticks = element_blank(),
-      panel.border = element_blank(),
-      panel.grid = element_blank(),
-      axis.title = element_blank()
-    )
-    
-    fire_map_2010 <- ca_base +
-      geom_polygon(data = cacopa, aes(fill = Firerate), color = "white") +
-      geom_polygon(color = "black", fill = NA) +
-      theme_bw() +
-      ditch_the_axes +
-      labs(title = "2010 California Wildfires")
-    fire_map_2010 + scale_fill_gradient(trans = "log10")
-    
-    fire_map_2010 <- fire_map_2010 +
-      scale_fill_gradient(low = "red", high = "darkred")
-    
+    fire_map_2010 <- get_fire_map("2010") 
     print(fire_map_2010)
   })
-  
-  ### CREATING THE FIRE MAP OF 2015 ###
   output$fire_map_2015 <- renderPlot({
-    options(scipen = 999)
-    
-    fire <- ca_fire %>%
-      select(FIRE_NAME, FIRE_YEAR, FIRE_SIZE, FIRE_SIZE_CLASS, STATE, COUNTY, FIPS_CODE, FIPS_NAME, "LOCATION" = SOURCE_REPORTING_UNIT_NAME)
-    by_county <- fire %>%
-      group_by(FIPS_NAME, FIRE_YEAR) %>%
-      count(sort = T)
-    
-    by_county <- subset(by_county, FIRE_YEAR == "2015")
-    
-    states <- map_data("state")
-    ca_df <- subset(states, region == "california")
-    
-    counties <- map_data("county")
-    ca_county <- subset(counties, region == "california")
-    
-    ca_base <- ggplot(data = ca_df, mapping = aes(x = long, y = lat, group = group)) +
-      coord_fixed(1.3) +
-      geom_polygon(color = "black", fill = "gray")
-    ca_base + theme_nothing()
-    
-    ca_base + theme_nothing() +
-      geom_polygon(data = ca_county, fill = NA, color = "white") +
-      geom_polygon(color = "black", fill = NA)
-    
-    by_county$FIPS_NAME <- tolower(by_county$FIPS_NAME)
-    
-    names(by_county)[names(by_county) == "FIPS_NAME"] <- "subregion"
-    by_county
-    
-    cacopa <- inner_join(ca_county, by_county, by = "subregion")
-    names(cacopa)[names(cacopa) == "n"] <- "Firerate"
-    
-    ditch_the_axes <- theme(
-      axis.text = element_blank(),
-      axis.line = element_blank(),
-      axis.ticks = element_blank(),
-      panel.border = element_blank(),
-      panel.grid = element_blank(),
-      axis.title = element_blank()
-    )
-    
-    fire_map_2015 <- ca_base +
-      geom_polygon(data = cacopa, aes(fill = Firerate), color = "white") +
-      geom_polygon(color = "black", fill = NA) +
-      theme_bw() +
-      ditch_the_axes +
-      labs(title = "2015 California Wildfires")
-    fire_map_2015 + scale_fill_gradient(trans = "log10")
-    
-    fire_map_2015 <- fire_map_2015 +
-      scale_fill_gradient(low = "red", high = "darkred")
-    
+    fire_map_2015 <- get_fire_map("2015") 
     print(fire_map_2015)
   })
   

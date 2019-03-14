@@ -130,10 +130,13 @@ body <- dashboardBody(
               present a visual comparison between Asthma atients and Wildfires to see if there exists
               a correlation that can be accounted for the Asthma hospitalizations"),
             fluidRow(
-              splitLayout(
-                cellWidths = c("33%", "33%", "33%"),
-                plotOutput("fire_map_2005"),
-                plotOutput("fire_map_2010"),
+              column(4,
+                plotOutput("fire_map_2005")
+              ),
+              column(4,
+                plotOutput("fire_map_2010")
+              ),
+              column(4,
                 plotOutput("fire_map_2015")
               )
             ),
