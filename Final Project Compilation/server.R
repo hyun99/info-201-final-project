@@ -141,11 +141,11 @@ shinyServer(function(input, output) {
       filter(County == input$state1_choice)
     
     ggplot(data = data1, aes(x = data1$Year, y = data1$sum_visits)) +
-      geom_image(image = "inhaler2.png", size = .075) +
       geom_smooth() +
       labs(x = "Year",
            y = "Asthma Emergency Department Visits per Year",
-           title = input$state1_choice)
+           title = input$state1_choice) +
+      geom_image(image = "inhaler2.png", asp = 2)
   })
   
   ## FIRST TAB, PLOT OF THE SECOND COUNTY VISUAL
@@ -155,11 +155,11 @@ shinyServer(function(input, output) {
     #asthma_data$Year == #input$year_choice
     
     ggplot(data = data2, aes(x = data2$Year, y = data2$sum_visits)) +
-      geom_image(image = "inhaler2.png", size = .075) + 
       geom_smooth() +
       labs(x = "Year",
            y = "Asthma Emergency Department Visits per Year",
-           title = input$state2_choice)
+           title = input$state2_choice) +
+      geom_image(image = "inhaler2.png", asp = 2)
   })
   
   ## Table to FIRST County Population's Total Hospital Visits in 
