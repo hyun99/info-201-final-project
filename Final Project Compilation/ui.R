@@ -258,7 +258,7 @@ body <- dashboardBody(
 # CREATING MAIN UI
 shinyUI(dashboardPage(skin = "black",
     dashboardHeader(title = "Asthma and California Wildfires",
-                    titleWidth = 450
+                    titleWidth = 750
                     ),
     sidebar,
     body
