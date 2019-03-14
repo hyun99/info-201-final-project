@@ -120,8 +120,7 @@ body <- dashboardBody(
     ),
     ### CREATING SECOND TAB ###
     tabItem(tabName = "WildFires",
-            h2("Severity of WildFires in California Counties for Every 5 Years
-               Since 2005"),
+            h2("Severity of WildFires in California Counties"),
             p("This page gives an insight to the Severity of Wildfires in Californian
               counties for Every 5 Years starting from year 2005. An interactive map is also made by differentiating the colors by
               the counties that the wildfires occured in and has informations of the year, amount of fires
@@ -207,10 +206,17 @@ body <- dashboardBody(
     ),
     tabItem(tabName = "Credits",
             h2("Sources:"),
-            h5("Wildfire Data"),
-            strong("https://www.kaggle.com/rtatman/188-million-us-wildfires"),
-            h5("Asthma Patient Data"),
-            strong("https://data.chhs.ca.gov/dataset/asthma-emergency-department-visit-rates-by-zip-code")
+            br(),
+            strong("Wildfire Data"),
+            h6("https://www.kaggle.com/rtatman/188-million-us-wildfires"),
+            br(),
+            strong("Asthma Patient Data"),
+            h6("https://data.chhs.ca.gov/dataset/asthma-emergency-department-visit-rates-by-zip-code"),
+            br(),
+            strong("California Community Foundation - Wildfire Relif Fund"),
+            p("If you feel compelled to help those who have lost housing or displaced due to wildfires,
+              please donate to the familes via link below."),
+            h6("https://www.calfund.org/wildfire-relief-fund")
     )
   )
 )
