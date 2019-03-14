@@ -3,7 +3,7 @@
 # run the application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
-# 
+#
 #    http://shiny.rstudio.com/
 #
 
@@ -21,29 +21,24 @@ library("mapproj")
 
 
 # in ui
-#leafletOutput(outputId = "fire_map")
+# leafletOutput(outputId = "fire_map")
 
-# in server()
-# output$map 
-
-
-library(shiny)
+# ui "method" plots 3 maps side by side 
+# then creates an interactive map
 
 ui <- shinyUI(fluidPage(
-  titlePanel("title panel"),
+  titlePanel("Various Maps of California Wild Fires"),
+  #mainPanel("The three maps show fire severity over time",
+  fluidRow(
+    splitLayout(
+      cellWidths = c("40%", "40%", "40%"),
+      plotOutput("fire_map_2005"),
+      plotOutput("fire_map_2010"),
+      plotOutput("fire_map_2015")
+    )
+  ),
 
-                mainPanel("main panel",
-                          fluidRow(
-                            splitLayout(cellWidths = c("33%", "33%", "33%"), 
-                                        plotOutput("fire_map_2012"), 
-                                        plotOutput("fire_map_2014"), 
-                                        plotOutput("fire_map_2016"))
-                          )
-                )
+  leafletOutput("fire_interactive_map")
+    #)
   )
 )
-
-
-
-
-

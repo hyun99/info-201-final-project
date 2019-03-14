@@ -4,24 +4,13 @@ library(dplyr)
 library(lintr)
 library(styler)
 library(tidyr)
+library(plotly)
 
-asthma_data <- read.csv("../asthma_by_county.csv", stringsAsFactors = F)
-asthma_data <- asthma_data %>%
-  select(Year, Age.Group, Number.of.Visits, County) %>%
-  arrange(Year, County) %>%
-  mutate(test <- replace_na(Number.of.Visits, 0)) %>%
-  group_by(Year, County) %>%
-  select(-Number.of.Visits) %>%
-  rename("num_visits" = `test <- replace_na(Number.of.Visits, 0)`) %>%
-  summarise(sum_visits = sum(num_visits)) %>%
-  filter(
-    Year == 2012 | Year == 2013 | Year == 2014 | Year == 2015 | Year == 2016
-  )
-
+asthma_data <- read.csv("summarized_asthma_data2.csv", stringsAsFactors = F)
 years <- unique(asthma_data$Year)
 county_names <- unique(asthma_data$County)
 
-my_ui <- fluidPage(
+shinyUI(fluidPage(
   h1("Test"),
   sidebarLayout(
     sidebarPanel(
@@ -60,10 +49,9 @@ my_ui <- fluidPage(
   
   tableOutput("ct2")
   ),
-  
   mainPanel(
-  plotOutput("county1"),
-  plotOutput("county2")
+  plotlyOutput("county1", width = "85%", height = "400px"),
+  plotlyOutput("county2", width = "85%", height = "400px")
   )
 )
-)
+))
