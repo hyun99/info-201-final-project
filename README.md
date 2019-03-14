@@ -1,19 +1,5 @@
-# info-201-final-project
+# Asthma Patient Visits and Wildfires in California.
 
-## Charts (COMPLETE BY TUESDAY NIGHT)
-# Sorting the data files into one data file by:
-- Fire data: fire name, fire year, fire size, fire class, state, county, "where it happened"
-- Asthma data: year, num_visits, age, county
+We decided to look at the historic Asthma Patient visits in relation to historic Wildfires in California because we wanted to determine if these recent wildfires in California may threaten children and adults who have asthma. 
 
-
-# Zhewen
-- Scatter plot looking at LA county Asthma visits (x-axis)
-wild fire rates (y-axis). change by year (and county)
-
-# Han
-- Map of CA: separated to county: color county by numbers of Fires: change by year
-# Anthony
-- Map of CA: separated to county: color county by severity of Asthma: change by year
-
-# Sung
-- Compiling everything together
+**Link to ShinyApp.io:**
