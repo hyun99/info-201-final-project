@@ -12,8 +12,9 @@ library(mapproj)
 library(shinydashboard)
 library(scatterD3)
 library(rsconnect)
+library(plotly)
 
-
+### FOR FIRST TAB ###
 asthma_data <- read.csv("asthma_by_county.csv", stringsAsFactors = F)
 asthma_data <- asthma_data %>%
   select(Year, Age.Group, Number.of.Visits, County) %>%
@@ -30,6 +31,7 @@ asthma_data <- asthma_data %>%
 years <- unique(asthma_data$Year)
 county_names <- unique(asthma_data$County)
 
+### FOR THIRD TAB ###
 choices_vec <- c("None" = "None",
                  "Fire Size" = "FIRE_SIZE",
                  "Fire Duration" = "time_span",
@@ -42,8 +44,10 @@ sidebar <- dashboardSidebar(
              icon = icon("chart-line")),
     menuItem("Wildfire", tabName = "WildFires",
              icon = icon("globe-americas")),
-    menuItem("Wildfire and Asthma", tabName = "Asthma Patients and WildFires",
-             icon = icon("chart-bar"))
+    menuItem("Wildfire and Asthma", tabName = "Asthma_and_Wildfires",
+             icon = icon("chart-bar")),
+    menuItem("Credits", tabName = "Credits",
+             icon = icon("book-open"))
   )
 )
 
@@ -55,25 +59,27 @@ body <- dashboardBody(
                             font-weight: semi-bold;
                             font-size: 24px;
       }
+
+      .content-wrapper, .right-side {
+                            background-color: #7da2d1;
+      }
                             '))),
   tabItems(
     tabItem(tabName = "Asthma",
             h2("Asthma Patients in California Counties from 2012 - 2016"),
-            p("Our group was curious in the number of Asthma
+            p("This page gives an insight to the number of Asthma
               patients that had visited the hospital in Californian
-              counties, because over the past couple of decades, there
-              have been many wildfires within the state of California.
-              We hypothesized that there may be some correlation between
-              the number of asthma patients and the number of wildfires
-              that have occured during a certain year. Thus, we wanted to
-              see, from this data visualization shown below, how many
-              asthma patients were admitted from years 2012-2016 and
-              observe if there some years that were much higher than the other, or
+              counties. Within the United States, there are over 11.5 million
+              asthma patients, most of which are children and because over the past couple of decades, 
+              there have been many wildfires within the state of California.
+              We hypothesized that there may be a rise in the number of asthma patients entering the hospitals due to asthma attacks.
+              It is a well-known fact that wildfires affect the airquality and risk of asthma episodes increases as the air quality decrease.
+              Thus, we wanted to see, from this data visualization shown below, how many
+              asthma patients were admitted from years 2012-2016 in respective Californian counties and
+              observe if there some years that were much higher than the other to
               see if there are visible trends occuring. We wanted to see exactly
-              how many asthma patients were in each respective county in order
-              to observe the correlation with asthma patients and wildfires. The
-              details of such as well as the details of wildfire severity can
-              be found on the next pages."),
+              how many asthma patients were admitted in each respective county to see if a trend is correlated to wildfires.
+              The details of wildfire severity and comparison can be found on the next pages."),
      selectInput(
         "state1_choice",
         "Select 1st County to Observe",
@@ -116,13 +122,13 @@ body <- dashboardBody(
     tabItem(tabName = "WildFires",
             h2("Severity of WildFires in California Counties for Every 5 Years
                Since 2005"),
-            p("Continuing from the Asthma Patient analysis, portrayed below is the Severity of Wildfires in California
-              Counties for Every 5 Years starting year 2005. An interactive map is also made by differentiating the colors by
+            p("This page gives an insight to the Severity of Wildfires in Californian
+              counties for Every 5 Years starting from year 2005. An interactive map is also made by differentiating the colors by
               the counties that the wildfires occured in and has informations of the year, amount of fires
               that have occured in that specific location in that year. By looking at both the map of the california 
               as well as the interactive map, we were able to examine the counties that had the most amount of fires
               throughout the late 1990s to 2016. We believe by looking at such visualization, we will be able to
-              present a visual comparison between Asthma Patients and Wildfires to see if there exists
+              present a visual comparison between Asthma atients and Wildfires to see if there exists
               a correlation that can be accounted for the Asthma hospitalizations"),
             fluidRow(
               splitLayout(
@@ -135,7 +141,7 @@ body <- dashboardBody(
             leafletOutput("fire_interactive_map")
     ),
     ### CREATING THIRD TAB ###
-    tabItem(tabName = "Asthma Patients and WildFires",
+    tabItem(tabName = "Asthma_and_Wildfires",
             h2("Comparison of the Sizes of the WildFires
                and Asthma Patients"),
             p("As a compilation of the Asthma Patient analysis as well as the Wildfire
@@ -190,9 +196,6 @@ body <- dashboardBody(
                                  selected = "Year"
                      )
               ),
-              
-              
-              
               # Visualization
               column(5,
                      scatterD3Output("scatter_plot", height = "700px")
@@ -201,12 +204,19 @@ body <- dashboardBody(
                      plotlyOutput("bar_chart", height = "700px")
               )
             )
+    ),
+    tabItem(tabName = "Credits",
+            h2("Sources:"),
+            h5("Wildfire Data"),
+            strong("https://www.kaggle.com/rtatman/188-million-us-wildfires"),
+            h5("Asthma Patient Data"),
+            strong("https://data.chhs.ca.gov/dataset/asthma-emergency-department-visit-rates-by-zip-code")
     )
   )
 )
 
 # CREATING MAIN UI
-shinyUI(dashboardPage(skin = "red",
+shinyUI(dashboardPage(skin = "black",
     dashboardHeader(title = "Asthma and California Wildfires",
                     titleWidth = 450
                     ),
