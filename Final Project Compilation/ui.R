@@ -28,6 +28,8 @@ choices_vec <- c("None" = "None",
 ## CREATING THE DASHBOARD SIDEBAR
 sidebar <- dashboardSidebar(
   sidebarMenu(
+    menuItem("Introduction", tabName = "intro",
+             icon = icon("home")),
     menuItem("Asthma", tabName = "Asthma",
              icon = icon("chart-line")),
     menuItem("Wildfire", tabName = "WildFires",
@@ -41,18 +43,49 @@ sidebar <- dashboardSidebar(
 
 # CREATING EACH INDIVIDUAL TAB's BODY
 body <- dashboardBody(
-  tags$head(tags$style(HTML('
-      .main-header .logo {
-                            font-family: "Georgia", Times, "Times New Roman", serif;
-                            font-weight: semi-bold;
-                            font-size: 24px;
-      }
-
-      .content-wrapper, .right-side {
-                            background-color: #FFFFFF;
-      }
-                            '))),
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+  ),
   tabItems(
+    tabItem(tabName = "intro",
+            tags$h2("What are wildfires?"),
+            tags$p("A wildfire or wildland fire is a fire in an area of
+                   combustible vegetation occurring in rural areas.
+                   (Cambridge University Press, 2008)."),
+            tags$p("Wildfires can be characterized in terms of the cause
+                   of ignition, their physical properties, the combustible
+                   material present, and the effect of weather on the fire.
+                   Wildfires can cause damage to property and human life,
+                   although naturally occurring wildfires may have beneficial
+                   effects on native vegetation, animals, and ecosystems that
+                   have evolved with fire. For humans, smoke from wildfires can
+                   cause health problems, especially for children and those who
+                   already have respiratory problems.",
+                   tags$a(href = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6038982/", "(Source)"),
+                   " Several epidemiological studies have demonstrated a close
+                   association between air pollution and respiratory allergic
+                   diseases such as bronchial asthma."),
+          
+            tags$h2("What is Asthma?"),
+            tags$p("Asthma is a common long-term inflammatory disease of the
+                   airways of the lungs. Symptoms involve recurring episodes
+                   of wheezing, coughing, chest tightness, shortness of breath."),
+            
+            tags$h2("Scope"),
+            tags$p("For the purpose of simplicity and efficiency, we have
+                   chosen California as the target region for analysis.
+                   The 2018 wildfire season was the deadliest and most
+                   destructive season on record in California, thus making
+                   CA the state for studying wildfire impact on Asthma
+                   treatment."),
+            tags$p("In the rest of the tabs, we will be covering the analysis
+                   over wirdfire frequency, sizes, and asthma hospitalization
+                   rates in California."),
+            
+            tags$img(src = "https://upload.wikimedia.org/wikipedia/commons/a/a6/The_Rim_Fire_in_the_Stanislaus_National_Forest_near_in_California_began_on_Aug._17%2C_2013-0004.jpg", width = "100%", height = "50%"),
+            tags$img(src = "http://www.conceptnutrition.co.uk/wp-content/uploads/2018/09/Asthma-Concept-nutrition.jpg", width = "100%", height = "50%")
+            
+            ),
     tabItem(tabName = "Asthma",
             h2("Asthma Patients in California Counties from 2012 - 2016"),
             p("This page gives an insight to the number of Asthma
