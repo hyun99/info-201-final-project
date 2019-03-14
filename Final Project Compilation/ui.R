@@ -216,7 +216,17 @@ body <- dashboardBody(
             strong("California Community Foundation - Wildfire Relif Fund"),
             p("If you feel compelled to help those who have lost housing or displaced due to wildfires,
               please donate to the familes via link below."),
-            h6("https://www.calfund.org/wildfire-relief-fund")
+            h6("https://www.calfund.org/wildfire-relief-fund"),
+            br(),
+            br(),
+            h2("Team Members"),
+            strong("Sung Ahn, Anthony Cheng, Donghyun Lee, Zhewen Zheng"),
+            p("We're a team comprised of Sophomores and Juniors who are
+              all interested in going into the field of technology. We decided
+              to look at the historic Asthma Patient visits in relation to 
+              historic Wildfires in California because we wanted to determine if these recent wildfires in California
+              may threaten children and adults who have asthma. Most of us know or have
+              family members that are affected by asthma.")
     )
   )
 )
